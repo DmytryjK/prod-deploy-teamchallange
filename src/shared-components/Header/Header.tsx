@@ -5,21 +5,32 @@ import {
     useCallback,
     memo,
     forwardRef,
+    lazy,
 } from 'react';
+
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { fetchCategoriesWithSubcategories } from '../../store/reducers/categoriesSlice';
-import DropdownMenu from './DropdownMenu';
-import BurgerMenu from './BurgerMenu';
-import CartIcon from './CartIcon/CartIcon';
-import FavoritesIcon from './FavoritesIcon/FavoritesIcon';
-import { DropdownAuth } from './Auth/Auth';
-import DropdownShoppingCart from './DropdownShoppingCart/DropdownShoppingCart';
+// import DropdownMenu from './DropdownMenu';
+// import BurgerMenu from './BurgerMenu';
+// import CartIcon from './CartIcon/CartIcon';
+// import FavoritesIcon from './FavoritesIcon/FavoritesIcon';
+// import { DropdownAuth } from './Auth/Auth';
+// import DropdownShoppingCart from './DropdownShoppingCart/DropdownShoppingCart';
+import TemporatyAdminNavPanel from './TemporatyAdminNavPanel/TemporatyAdminNavPanel';
 import userScrollWidth from '../../utils/userScrollWidth';
 import headerSprite from '../../assets/icons/header/header-sprite.svg';
-import TemporatyAdminNavPanel from './TemporatyAdminNavPanel/TemporatyAdminNavPanel';
 import './Header.scss';
 import Search from './Search/Search';
+
+const DropdownMenu = lazy(() => import('./DropdownMenu'));
+const BurgerMenu = lazy(() => import('./BurgerMenu'));
+const CartIcon = lazy(() => import('./CartIcon/CartIcon'));
+const FavoritesIcon = lazy(() => import('./FavoritesIcon/FavoritesIcon'));
+const DropdownAuth = lazy(() => import('./Auth/DropdownAuth/DropdownAuth'));
+const DropdownShoppingCart = lazy(
+    () => import('./DropdownShoppingCart/DropdownShoppingCart')
+);
 
 export type SubCategoryType = {
     id: string;
